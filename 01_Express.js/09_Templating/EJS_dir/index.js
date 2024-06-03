@@ -17,6 +17,19 @@ app.get('/hello', (req,res)=>{
    res.send('hello')
 })
 
+
+app.get('/ig/:username', (req,res)=>{
+   let {username } = req.params;
+   // console.log(username)
+   res.render('instagramp.ejs', {username})
+   
+})
+
+app.get('/rolldice', (req,res)=>{
+   let diceVal = Math.floor(Math.random()*6)+1;
+   res.render('rolldice.ejs', {diceVal})
+})
+
  app.listen(port, ()=>{
     console.log(`listening on port ${port}`);
  });
