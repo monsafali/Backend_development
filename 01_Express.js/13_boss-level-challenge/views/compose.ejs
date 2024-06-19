@@ -1,19 +1,38 @@
 <%- include("partials/header") -%>
+<h1>Compose</h1>
 
-    <form action="/compose" method="post">
-        <h1>Compose</h1>
+<form action="/compose" method="post">
+  <div class="form-group">
+    <label >Title</label>
+    <input type="text" name="userInput" class="form-control">
+    <label>Post</label>
+    <textarea name="postBody" rows="5" cols="30" class="form-control"></textarea>
+  </div>
+  <button type="submit" name="button" class="btn btn-primary">Publish</button>
+</form>
 
-        <div class="form-group">
-            <label for="postTitle">Title</label>
-            <input type="text" class="form-control" id="postTitle" name="postTitle">
-        </div>
-
-        <div class="form-group">
-            <label for="postBody">Post</label>
-            <textarea class="form-control" id="postBody" name="postBody" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Publish</button>
-    </form>
 
 <%- include("partials/footer") -%>
+
+
+
+<!-- 
+<form action="/compose" method="post">
+ <div>
+   <Label for="user">Title</Label>
+   <input type="text" class="form-control w-100" name="userInput" id="user">
+ </div>
+ <div class="form-floating">
+   <label for="floatingTextarea">Post</label>
+   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"style="height: 100px"></textarea>
+ </div>
+ <br>
+ <button class="btn btn-primary" type="submit">Publish</button>
+</form> 
+
+
+ 
+
+
+
+-->

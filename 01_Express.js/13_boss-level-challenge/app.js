@@ -31,9 +31,19 @@ app.get("/about", function(req, res){
 app.get("/contact", function(req, res){
   res.render("contact", { contactContent: contactContent });
 })
-contactContent
 
  
+app.get("/compose", function(req, res){
+  res.render("compose");
+})
+
+
+app.post("/compose", function(req, res){
+  const userInput = req.body.userInput;
+  console.log(userInput); // Print the user input to the console
+  res.send("Form received!");
+});
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
