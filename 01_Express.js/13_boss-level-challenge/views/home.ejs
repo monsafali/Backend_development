@@ -6,10 +6,20 @@
     <h1>Home</h1>
 
     <p><%= startingContent %></p>
-    <% console.log(submissions); %>
     
 
+   
+ 
+
+
+   <% posts.forEach(element => { %>
+    <% console.log(element.title) %>
+<% }); %>
+
+    
+  
 </div>
 
 
 <%- include('partials/footer') %>
+
