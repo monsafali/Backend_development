@@ -1,0 +1,14 @@
+{
+  "name": "08_path_parameters",
+  "version": "1.0.0",
+  "description": "Library v/s Framework",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

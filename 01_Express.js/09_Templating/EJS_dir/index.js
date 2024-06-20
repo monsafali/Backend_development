@@ -4,7 +4,8 @@ const port = 8080;
 const path = require("path");
 
 
- app.set("view Engin", "ejs");
+ app.set("view engine", "ejs");
+ 
  app.set('views', path.join(__dirname, "/views"))
 
 app.get("/", (req, res) =>{
@@ -19,11 +20,12 @@ app.get('/hello', (req,res)=>{
 
 
 app.get('/ig/:username', (req,res)=>{
+   const khalifa = ["Abubaker","Umar Farooq","Usman Ghani","Ali Ul Murtaza"]
    let {username } = req.params;
-   // console.log(username)
-   res.render('instagramp.ejs', {username})
+   console.log(username)
+   res.render('instagramp.ejs', {username, khalifa})
    
-})
+}) 
 
 app.get('/rolldice', (req,res)=>{
    let diceVal = Math.floor(Math.random()*6)+1;

@@ -1,29 +1,46 @@
-const express = require('express')
-const path = require('path')
-const app = express()
-const port = 3000
-
-// const MonsafMiddleware = (req, res, next) =>{
-//     console.log(req);
-//     next()
-// }
+const express = require('express');
+const { chownSync } = require('fs');
+const app = express();
+const port = 8080;
+const path = require("path");
 
 
-app.use(express.static(path.join(__dirname, "public")))
-// app.use(MonsafMiddleware)
+ app.set("view engine", "ejs");
+ 
+ app.set('views', path.join(__dirname, "/views"))
 
-
-app.get('/hello/:name', (req, res) => {
-  res.send('Hello World!'+ req.params.name)
+app.get("/", (req, res) =>{
+   // res.send('this is root')
+   res.render('home.ejs')
 })
 
-app.get('/about', (req, res) => {
-    // res.send('about')
-    // res.sendFile(path.join(__dirname, 'index.html'))
-    // res.status(500)
-    res.json({"monsaf":23})
-  })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.get('/hello', (req,res)=>{
+   res.send('hello')
 })
+
+
+app.get('/ig/:username', (req,res)=>{
+   let {username} = req.params;
+   const instaData = require("./data.json");
+   const data = instaData[username];
+   if (data) {
+      console.log(data);
+      res.render('instagramp.ejs', { data });
+    } else {
+      res.status(404).send('User not found');
+    }
+  
+}) 
+
+
+
+
+app.get('/rolldice', (req,res)=>{
+   let diceVal = Math.floor(Math.random()*6)+1;
+   res.render('rolldice.ejs', {diceVal})
+})
+
+ app.listen(port, ()=>{
+    console.log(`listening on port ${port}`);
+ });
