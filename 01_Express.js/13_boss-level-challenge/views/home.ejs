@@ -6,14 +6,14 @@
     <h1>Home</h1>
 
     <p><%= startingContent %></p>
-    
-
    
- 
 
 
    <% posts.forEach(element => { %>
-    <% console.log(element.title) %>
+   <div>
+        <h1><%= element.title %></h1>
+        <p><%= element.content %></p>
+      </div>
 <% }); %>
 
     
