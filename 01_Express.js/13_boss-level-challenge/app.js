@@ -27,7 +27,7 @@ app.use(express.static("public"));
 app.get("/", function(req, res){
     res.render("home", {
        startingContent: homeStartingContent,
-      posts: posts });
+      posts: posts, _  });
 })
 
 app.get("/about", function(req, res){
@@ -59,20 +59,21 @@ app.post("/compose", function(req, res){
 
 app.get("/posts/:postName", (req, res) => {
   const requestedTitle = _.kebabCase(req.params.postName);
-  let found = false;
+  let foundPost = null;
+
   posts.forEach(post => {
     const storedTitle = _.kebabCase(post.title);
     if (storedTitle === requestedTitle) {
-      console.log("match found");
-      found = true;
+      foundPost = post;
     }
   });
-  if (!found) {
-    console.log("match not found");
-  }
-  res.redirect('/');
-});
 
+  if (foundPost) {
+    res.render('post.ejs', { title: foundPost.title,content: foundPost.content });
+  } else {
+    res.status(404).send('Post not found');
+  }
+});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
