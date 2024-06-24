@@ -2,12 +2,11 @@
   "name": "1_intro_rest_api",
   "version": "1.0.0",
   "description": "Rest  Representational State Transfer Rest is an architectural style that defines a set of constraints to be used for creating wb services.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "Monsaf",
+  "author": "kamal",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
