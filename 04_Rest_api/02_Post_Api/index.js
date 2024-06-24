@@ -3,7 +3,7 @@ const app = express();
 const port = 8080;
 const path = require("path")
 
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 // uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 
@@ -18,17 +18,17 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let posts = [
     {
-        id: uuidv4(),
+        id : "1a",
         username: "monsaf ali",
         content: "i love coding"
     },
     {
-        id: uuidv4(),
+        id : "2b",
         username: "muhammad kaleem",
         content: "i love automation"
     },
     {
-        id: uuidv4(),
+        id : "3c",
         username: "kamal",
         content: "i love Ai only you worked hard make you unique"
     },
@@ -50,20 +50,22 @@ app.get("/posts/new", (req, res)=>{
 app.post("/posts",(req, res)=>{
     // console.log(req.body)
     let {username, content} = req.body;
-    let id = uuidv4();
-    // res.send("Post request working")
-    posts.push({id,username, content});
-    res.redirect("/posts")
 
+    // res.send("Post request working")
+    posts.push({username, content});
+    res.redirect("/posts")
 })
 
 
 app.get("/posts/:id", (req, res)=>{
-    let {id} = req.params;
-    let post = posts.find((p) => id === p.id);
-    res.render("show.ejs", {post})
-    res.send("request working fine")
+   let {id} = req.params;
+   let post = posts.find((p) => id === p.id)
+//    console.log(post)
+res.render("show.ejs", {post})
+
 })
+
+
 
  app.listen(port, ()=>{
     console.log("Listenign to port: 8080")
