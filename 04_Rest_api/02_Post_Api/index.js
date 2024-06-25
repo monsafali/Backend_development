@@ -3,7 +3,7 @@ const app = express();
 const port = 8080;
 const path = require("path")
 
-// const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 // uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 
@@ -18,17 +18,17 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let posts = [
     {
-        id : "1a",
+        id : uuidv4(),
         username: "monsaf ali",
         content: "i love coding"
     },
     {
-        id : "2b",
+        id : uuidv4(),
         username: "muhammad kaleem",
         content: "i love automation"
     },
     {
-        id : "3c",
+        id : uuidv4(),
         username: "kamal",
         content: "i love Ai only you worked hard make you unique"
     },
