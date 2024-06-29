@@ -1,3 +1,8 @@
+
+
+sudo snap install mysql-workbench-community
+
+
 What is Database?
 It is a collection of data in a format that can be easily accessed.
 Why databases?
@@ -48,3 +53,18 @@ Some imprt Date Datatypes
 Date, Timestamp, Time Year, 
 
 
+Constarains: 
+Rules for data in the table
+
+NOT NULL: Columns cannot have a null value
+UNIQUE:   All values in column are different
+Default    Set the defaul value of a column
+Check IT can limit the values allowed in a column 
+
+
+
+Primary Key: Makes a column unique & not nul but used only for one 
+
+
+
+Foreign Key:  Prevent actions that whould destroy links between tables; 
