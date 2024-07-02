@@ -62,9 +62,95 @@ Default    Set the defaul value of a column
 Check IT can limit the values allowed in a column 
 
 
+CREATE TABLE players (
+    id INT,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    salary INT DEFAULT 0,
+    age INT,
+    CONSTRAINT age_check CHECK (age >= 18)
+);
+
+
+
 
 Primary Key: Makes a column unique & not nul but used only for one 
+It is a column (or set of columns) in a table that uniquely identifies each row ( a unique id) There is only 1 PK & it should be NOT nu..
+
+
+Createw Table temp ( 
+ id int not null,
+ Primary key (id)
+);
 
 
 
 Foreign Key:  Prevent actions that whould destroy links between tables; 
+A foreign key is a column (or set of columns) in a table that refers to the primary key in 
+Foreing key can have dupliat & null values there can be multipe Fks. 
+create table temp (
+ id int,
+ Foreign Key (id) references customer (id))
+
+
+ DISTINCT
+ select distinct age from user:
+
+only give us unique value not show same again & again.  
+
+ 
+ Select first_name as fname from table_name; 
+
+ Where:
+ select * from....... where fname='monsaf' And passsword='Jutt@1122';
+
+ select * from ..... where age >= 18 andl age <= 40;
+
+ Limit
+ we can add the limit how much row data we need to simply add limit 5;
+
+ Order by Clause
+  To sort in ascending (ASC) or desending order (DESC)
+  Selectt col1, col2 from table_name Order by col_name asc or desc
+
+
+
+  Aggregate Funciton
+   Aggregate funtions perfomr a calculation on  a set of values, and rturn a single value.
+    Count()
+    Max()
+    Min()
+    Sum()
+    AVG()
+
+    EXample
+select max(age) from users;
+select count(age) from users where age = 32;
+select min(age) from users;
+select avg(age) from users;
+select sum(followers) from users;
+
+
+Groups By Clause
+ Grops rows that have the same values into summary rows. 
+ It collects data from multiple records and groups the result by one or more column.
+  
+select count(age) from users group by age ;
+select age ,count(age) from users group by age ;
+select age ,max(followers) from users group by age ;
+
+
+
+having Clause:
+Similar To where i.e applies soem condition on rows.
+ But it is used when we want to aply any condition after grouping.
+  
+Select col1, col2,
+from table_name
+group by col_name
+having condition;
+
+Where is for the table, having is for a group
+Grouping is necesssary for Having. 
+Examples:
+ select age ,max(followers) from users group by age  having max(followers) > 400;
