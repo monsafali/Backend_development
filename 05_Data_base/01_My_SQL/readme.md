@@ -142,7 +142,7 @@ select age ,max(followers) from users group by age ;
 
 
 having Clause:
-Similar To where i.e applies soem condition on rows.
+Similar To where i.e applies some condition on rows.
  But it is used when we want to aply any condition after grouping.
   
 Select col1, col2,
@@ -154,3 +154,61 @@ Where is for the table, having is for a group
 Grouping is necesssary for Having. 
 Examples:
  select age ,max(followers) from users group by age  having max(followers) > 400;
+
+
+
+
+Table Queries:
+
+Update ( to update existing rows)
+set SQL_SAFE_UPDATES = 0;
+Update table_name set col1 = val1, col2, val2 where condition;
+update user set followers = 600 where age = 16;
+
+
+Delete (to delte existing rows)
+Delete from table_name where conditon;
+delete from users where age >= 23 and age < 25;
+
+
+
+Alter ( to change the schema)
+
+ADD Column
+Alter Table  Table_name
+Add column column_name datatype consraint;
+
+
+Drop column 
+Alter Table table_name
+Drop column column_name;
+
+Rename Table
+Alter table table_name;
+Rename to new_table_name
+
+Change Columns (rename)
+Alter Table table_name
+Change column old_name new_name new_datatype new_constraint;
+
+
+
+Modify Columnn (modifty datatype/constraint)
+
+Alter table table_name
+Modify col_name new_datatype new_constraints;
+
+
+
+
+
+alter table users add column city varchar(25) default "lahore";
+alter table users drop column age;
+alter table users rename to InstaUser;
+alter table users change column followers subs int default 0;
+
+
+
+Truncate (to delete table's data)
+
+TRUNCATE TABLE table_name;
