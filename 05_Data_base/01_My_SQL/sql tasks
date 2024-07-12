@@ -1,0 +1,177 @@
+Create a table named employees with columns: emp_id (integer, primary key), emp_name (varchar), department (varchar), salary (integer). Insert some sample data into this table.
+
+Select all employees whose salary is greater than $50000.
+
+
+Find the average salary of employees in each department.
+
+Retrieve the highest salary among all employees.
+
+Count the number of employees in each department.
+
+Add a new column bonus to the employees table. Assign a bonus amount based on the following conditions:
+
+$1000 bonus for employees with a salary greater than $70000.
+$500 bonus for employees with a salary between $50000 and $70000 (inclusive).
+No bonus for employees with a salary less than $50000.
+Update the employees table to increase the salary by 10% for all employees.
+
+Delete all employees whose salary is less than $30000.
+
+Find the names of departments where the average salary is greater than $60000.
+
+Calculate the total salary expense for the company.
+
+Create a table named students with columns: student_id (integer, primary key), student_name (varchar), age (integer), city (varchar). Insert some sample data into this table.
+
+Select all students who are from 'New York'.
+
+Find the average age of students in each city.
+
+Retrieve the youngest student among all students.
+
+Count the number of students in each city.
+
+Add a new column scholarship to the students table. Assign a scholarship amount based on the following conditions:
+
+$500 scholarship for students aged less than 20.
+$300 scholarship for students aged between 20 and 25 (inclusive).
+No scholarship for students aged 26 or older.
+Update the students table to increase the age by 1 year for all students.
+
+Delete all students who are younger than 18 years old.
+
+Find the cities where the average age of students is less than 22.
+
+Calculate the total number of students.
+
+Create a table named products with columns: product_id (integer, primary key), product_name (varchar), category (varchar), price (decimal). Insert some sample data into this table.
+
+Select all products in the 'Electronics' category.
+
+Find the average price of products in each category.
+
+Retrieve the most expensive product among all products.
+
+Count the number of products in each category.
+
+Add a new column discounted_price to the products table. Calculate the discounted price for each product with the formula: discounted_price = price * 0.8 (i.e., apply a 20% discount).
+
+Update the products table to increase the price by 5% for products in the 'Clothing' category.
+
+Delete all products where the price is less than $50.
+
+Find the categories where the average price of products is greater than $100.
+
+Calculate the total revenue generated from product sales.
+
+Create a table named orders with columns: order_id (integer, primary key), customer_id (integer), order_date (date), total_amount (decimal). Insert some sample data into this table.
+
+Select all orders placed in the month of January 2023.
+
+Find the average total amount of orders placed each month.
+
+Retrieve the highest total amount among all orders.
+
+Count the number of orders placed by each customer.
+
+Add a new column discount_amount to the orders table. Assign a discount amount based on the following conditions:
+
+10% discount for orders with a total amount greater than $1000.
+5% discount for orders with a total amount between $500 and $1000 (inclusive).
+No discount for orders with a total amount less than $500.
+Update the orders table to increase the total amount by 15% for all orders.
+
+Delete all orders where the total amount is less than $200.
+
+Find the customer IDs who placed orders with a total amount greater than $5000.
+
+Calculate the total revenue generated from all orders.
+
+Create a table named inventory with columns: item_id (integer, primary key), item_name (varchar), quantity (integer), location (varchar). Insert some sample data into this table.
+
+Select all items with a quantity greater than 100.
+
+Find the average quantity of items at each location.
+
+Retrieve the item with the highest quantity among all items.
+
+Count the number of items at each location.
+
+Add a new column reorder_level to the inventory table. Set the reorder level as follows:
+
+Reorder level of 200 for items with a quantity less than 50.
+Reorder level of 100 for items with a quantity between 50 and 100 (inclusive).
+No reorder level adjustment for items with a quantity greater than or equal to 100.
+Update the inventory table to increase the quantity by 50 units for all items.
+
+Delete all items where the quantity is less than 10.
+
+Find the locations where the average quantity of items is less than 150.
+
+Calculate the total quantity of items in inventory.
+
+Create a table named customers with columns: customer_id (integer, primary key), customer_name (varchar), city (varchar), total_spent (decimal). Insert some sample data into this table.
+
+Select all customers from the city of 'London'.
+
+Find the average total spent by customers in each city.
+
+Retrieve the customer who has spent the most money.
+
+Count the number of customers in each city.
+
+Add a new column loyalty_level to the customers table. Assign a loyalty level based on the following conditions:
+
+'Gold' for customers who have spent more than $10000.
+'Silver' for customers who have spent between $5000 and $10000 (inclusive).
+'Bronze' for customers who have spent less than $5000.
+Update the customers table to increase the total spent by 10% for all customers.
+
+Delete all customers who have spent less than $1000.
+
+Find the cities where the average total spent by customers is greater than $5000.
+
+Calculate the total revenue generated from all customers.
+
+Create a table named events with columns: event_id (integer, primary key), event_name (varchar), start_date (date), end_date (date), location (varchar). Insert some sample data into this table.
+
+Select all events that took place in the month of August 2023.
+
+Find the average duration (in days) of events at each location.
+
+Retrieve the event with the longest duration (in days).
+
+Count the number of events held at each location.
+
+Add a new column registration_fee to the events table. Set the registration fee as follows:
+
+$50 fee for events with a duration less than 3 days.
+$100 fee for events with a duration between 3 and 5 days (inclusive).
+$150 fee for events with a duration greater than 5 days.
+Update the events table to extend the end date by 1 day for all events.
+
+Delete all events where the start date is before January 1, 2023.
+
+Find the locations where the average duration of events is less than 4 days.
+
+Calculate the total revenue generated from all events.
+
+Create a table named students with columns: student_id (integer, primary key), student_name (varchar), age (integer), city (varchar). Insert some sample data into this table.
+
+Select all students who are older than 20 years.
+
+Find the average age of students in each city.
+
+Retrieve the youngest student among all students.
+
+Count the number of students in each city.
+
+Add a new column scholarship_amount to the students table. Assign a scholarship amount based on the following conditions:
+
+$500 scholarship for students younger than 18 years old.
+$300 scholarship for students aged between 18 and 25 (inclusive).
+No scholarship for students older than 25.
+Update the students table to increase the age by 1 year for all students.
+
+Delete all students who live in cities with fewer than
