@@ -180,3 +180,11 @@ TRUNCATE TABL E table_name;
 
 
 source scheme.sql; 
+
+
+how to insert data in Bulk:
+using faker
+
+
+
+Routing  in mysql:

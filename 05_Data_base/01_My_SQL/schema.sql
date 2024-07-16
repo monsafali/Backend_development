@@ -1,8 +1,8 @@
-create table user(
-    Id varchar(50) PRIMARY KEY,
-    UserName varchar(50) UNIQUE,
-    Email varchar(50) UNIQUE NOT NULL,
-    Password varchar(50) NOT NULL
+CREATE TABLE user (
+    id VARCHAR(255) PRIMARY KEY,
+    username VARCHAR(255) UNIQUE,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
 );
 
 

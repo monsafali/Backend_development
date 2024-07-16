@@ -13,25 +13,32 @@ const connection = mysql.createConnection({
  
 
 
-// Inserting new Data;
-let q = "INSERT INTO user (Id, username, email, password) VALUES ?"; 
-let users = [
+let getRandomUser = () => {
+  return [
+    faker.string.uuid(),
+    faker.internet.userName(),
+    faker.internet.email(),
+    faker.internet.password(),
+  ];
    
-    ['678', 'Emily Carter', 'emilycarter@example.com', '456 Oak Avenue'],
-    ['910', 'Daniel Smith', 'danielsmith@example.com', '789 Pine Road'],
-    ['112', 'Sophia Brown', 'sophiabrown@example.com', '321 Cedar Lane'],
-    ['134', 'Liam Johnson', 'liamjohnson@example.com', '654 Birch Street'],
-    ['145', 'Olivia Wilson', 'oliviawilson@example.com', '987 Elm Drive'],
-    ['789', 'Noah Davis', 'noahdavis@example.com', '159 Maple Avenue'],
-    ['234', 'Emma Martinez', 'emmamartinez@example.com', '753 Spruce Road'],
-    ['345', 'Mason Lee', 'masonlee@example.com', '246 Oak Street'],
-    ['456', 'Ava White', 'avawhite@example.com', '135 Pine Lane']
-  ]
-  
+}
+// console.log(User())
+
+
+
+// Inserting new Data;
+let q = "INSERT INTO user (id, username, email, password) VALUES ?"; 
+
+let data = [];
+
+
+for (let i=1; i<=100;i++ ) {
+  data.push(getRandomUser()); //100 fake users creating by this funciton
+}
 
 
 try {
-    connection.query(q,[users],(err, result) =>{
+    connection.query(q,[data],(err, result) =>{
         if(err) throw err;
         console.log(result);
     })
@@ -40,15 +47,3 @@ try {
 }
 
 connection.end();
-
-
-let User = () => {
-  return {
-    Id: faker.string.uuid(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    password: faker.internet.password(),
-  };
-}
-
-// console.log(User())

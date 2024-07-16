@@ -1,4 +1,4 @@
-const { faker, tr } = require('@faker-js/faker');
+const { faker, tr, es } = require('@faker-js/faker');
 const mysql = require('mysql2');
 const express = require("express")
 const app = express();
@@ -86,8 +86,31 @@ app.get("/user/:id/edit", (req, res) =>{
 // Update DB route
 
 app.patch("/user/:id", (req, res) =>{
-    res.send("updated")
+    let {id} = req.params
+    let {password: formPass, userName: newUserName} = req.body;
+    let q = `SELECT * from user where id='${id}'`;
+    // res.send("updated")
+    try {
+        connection.query(q,(err,result) =>{
+            if(err) throw err;
+            let user =result[0];
+            if(formPass != user.password){
+                res.send("Wrong Password")
+            } else{
+                let q2 = `UPDATE user SET username='${newUserName}' WHERE id='${id}'`;
+                connection.query(q2, (err, result)=>{
+                    if(err) throw err;
+                    res.send(result);
+                })
+            }
+            res.send(user)
+        });
+    } catch(err){
+        console.log(err);
+        res.send("Some error in DB");
+    }
 })
+
 
 
 
