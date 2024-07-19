@@ -37,3 +37,72 @@ Show collections
  
  db.collection.find({key: value})
  db.collection.findOne({key: value})
+
+
+Querry Operators
+Q: Find student where marks> 75
+db.student.find({marks: {$gt:75}})
+db.report.find({age: {$eq: 25}})
+db.student.find({ age: { $gt: 50 } });
+db.report.find({ age: { $gte: 30 } });
+db.report.find({ age: { $in: [20, 25, 30] } });
+db.report.find({age: {$lt:20}})
+db.report.find({age: {$ne:25}})
+
+
+db.report.find({ $and: [{ age: { $gt: 20 } }, { age: { $lt: 25 } }] });
+
+
+
+
+Find students who live in Lahore or Karachi
+db.student.find( { city: {$in: ["lahore", "karachi"]}})
+
+
+Find student who scored >75 or live in lahore
+db.student.find( {$or: [{marks: {$gt: 75}},{city: "Lahore"}]})
+
+
+Update Methods:
+
+
+db.collection.updateOne(<filter>, <update>, <options>)
+db.collection.updateOne({name: "monsaf"},  {$set:{marks:99}}})
+db.collection.updateMany()
+update all doucumetn that match a specified filter.
+db.collection.replaceOne()
+db.student.replaceOne({name: "monsaf"},{name: "kamal", marks: 23, state: "punjab"})
+Replaces ast most a single document that match a specified filter even though multiple dcument may match the specified filter.
+
+
+Nesting:
+
+db.student.insertOne({
+  name: "Farah",
+  performance: {
+    marks: 88,
+    grade: "A"
+  }
+})
+
+db.student.find({"performance.marks": 88})
+
+
+DELETE in DB:
+
+db.student.deleteOne({state: "punjab"})
+
+to all delete
+db.student.deleteMany({marks: {$lt: 75}})
+
+
+to delete complete collection
+db.student.delteMany({})
+
+to delete complete db
+db.dropDatabase()
+
+
+
+
+
