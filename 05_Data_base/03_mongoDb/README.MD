@@ -106,3 +106,33 @@ db.dropDatabase()
 
 
 
+
+Chapter 2:
+Mongoose:
+A mongose is npm libarary. 
+A library that creates a connection between MongoDb & Node.js JavaScript Runtime Environment
+It is an ODM (Object Data Modeling) Library. 
+
+
+CREATE FOLDER insie
+inililize node packages
+npm init -y
+
+install mongoose
+npm i mongoose
+
+
+Schema:
+Schema defines the shape of the documents within thast collection. like blue print 
+Example:
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  age: Number
+})
+
+
+
+Models:
+Model in mongoose is a class with which we construct documents.  
+
