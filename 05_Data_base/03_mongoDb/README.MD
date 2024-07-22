@@ -123,16 +123,51 @@ npm i mongoose
 
 
 Schema:
-Schema defines the shape of the documents within thast collection. like blue print 
+Schema defines the shape of the documents within that collection. like blue print 
 Example:
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   age: Number
 })
-
+const Employee = mongoose.model("Employee", userSchema);
 
 
 Models:
 Model in mongoose is a class with which we construct documents.  
 
+
+
+Insert
+using Mongoose
+inserting One
+
+
+
+Inserting Many
+
+Mongowse use Operating Buffering
+Mongoose lets you start using your models immediately, without waiting for mangoose to establish a connection to MongoDb.
+
+FIND
+model.find() //returns a Query Object (then able)
+*Mongoose Queries are nto promises. But they have a .then().
+
+User.find({ age: {$gte:35}})
+.then((res)=>{
+  console.log(res[0].name);
+})
+.catch((err)=>{
+  console.log(err);
+});
+
+
+model.findOne()
+model.findByid()
+
+Update
+model.updaeOne()
+model.updateMany()
+
+
+Delete method
