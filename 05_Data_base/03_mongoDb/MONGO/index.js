@@ -13,7 +13,7 @@ async function main() {
 
 // Schema
 const userSchema = new mongoose.Schema({
-  name: String,
+  name: String, 
   email: String,
   age: Number
 })
@@ -100,7 +100,6 @@ const User = mongoose.model("User", userSchema);
   
 
 
-
 // User.findOneAndUpdate({name:"Julia"}, {age:40}, {new: true})
 // .then((res)=>{
 //   console.log(res)
@@ -139,10 +138,7 @@ const User = mongoose.model("User", userSchema);
   //     console.log(err);
   //   });
   
-
- 
-
-User.findByIdAndDelete("669b9471e6d745f7dd67e2c7").then((res)=>{
+  User.findByIdAndDelete("669b9471e6d745f7dd67e2c7").then((res)=>{
   console.log(res)
 })
 .catch((err)=>{
