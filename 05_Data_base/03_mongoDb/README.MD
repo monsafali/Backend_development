@@ -169,5 +169,12 @@ Update
 model.updaeOne()
 model.updateMany()
 
-
 Delete method
+
+Schema Validations
+Basically Rules for Schema
+
+
+Update
+
+
