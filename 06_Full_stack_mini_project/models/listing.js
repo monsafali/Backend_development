@@ -52,9 +52,19 @@ const listingSchema = new Schema({
         }
     },
 
+    //   image: {
+    //     filename: String,
+    //     url: String
+    // },
+
+
+
     price: Number,
     location: String,
-    country: String,
+    country: {
+        type: [String],
+        default: []
+    }
 });
 
 const Listing = mongoose.model("listing", listingSchema);
