@@ -6,9 +6,7 @@ const Listing = require("./models/listing.js")
 const path = require("path");
 const Mongo_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const methodOverride = require("method-override");
-
-
-
+const ejsMate = require('ejs-mate')  // require ejs mate
 
 
 main()
@@ -19,7 +17,6 @@ main()
     console.log(err)
 })
 
-
 async function  main (){
     await mongose.connect(Mongo_URL)
 }
@@ -27,19 +24,18 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride("_method"));
-
+app.engine('ejs', ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res)=>{
     res.send("Hi I am root welcome to a big game  ")
 })
-
 
 // index Route
 app.get("/listings", async (req, res)=>{
     const allListening = await Listing.find({});
     res.render("listings/index.ejs", {allListening})
 })
-
 
 // New Route
 app.get("/listings/new", (Req, res) =>{

@@ -1,0 +1,37 @@
+first install : ejs-mate
+require it ;   const ejsMate = require('ejs-mate')  // require ejs mate
+
+then use it :   app.engine('ejs', ejsMate);
+
+create boilerplate.ejs temp file on  mkdir -p /views/layouts/boilerplate.ejs
+app.set("views", path.join(__dirname, "views"));
+
+
+
+then that file  export it like this way:.
+ <div class="container">  <%- body %> </div>
+
+ then emport that files from others requiried ejs template (Whereever you want to apply that same settng like header & footer same)
+ <% layout("/layouts/boilerplate") %>
+
+
+
+then create sytle .css file on mkdir -p /public/css/sytle.css
+app.use(express.static(path.join(__dirname, "public")));
+apply whetever setting you want on your css file and export it to all the pages
+
+
+
+
+then create a new folder called includes and inside create file navbar.ejs add all navbar bootstrap code their 
+then use it that folder in boilerplate.ejs file
+<%- include("../includes/navbar.ejs") %>
+
+same as i can add footer & also as much as i can.
+
+
+
+
+
+
+
