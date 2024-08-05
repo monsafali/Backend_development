@@ -1,0 +1,33 @@
+Middleware:
+ It is an intermediary
+
+
+ Request --------->  Middleware ----------- > Response
+
+ In Express:
+ Middleware in Express are function that come into play after the server receives the request and before the response is sent to the client.
+
+ Common Middleware function:
+ methodOverride
+ bodyParser
+ Express.static
+ Express.urlencoded.
+
+
+ What do Middleware do?
+
+ Middleware funtion can perform the fellowing task:
+ Execute any code.
+ Make changes to he request and the response objects.
+ End the request-response cycle.
+ Call the next middleware function in the stack. 
+
+
+ 
+ Using Next:
+ The next middleware function is commonly denoted by a variable named next;
+
+ app.use((req, res, next) =>{
+    console.log('Time:', Date.now())
+    next()
+ })
