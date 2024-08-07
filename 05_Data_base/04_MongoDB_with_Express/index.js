@@ -28,17 +28,12 @@ async function main() {
 
 
 // Indeex route
-app.get("/chats", async (req, res, next) => {
-    try {
+app.get("/chats", asyncWrap (async (req, res, next) => {  
       let chats = await Chat.find();
       // console.log(chats); // Check structure here
       res.render("index", { chats });
-    } catch (err) {
-      // console.error(err);
-      // res.status(500).send("Internal Server Error");
-      next(err);
-    }
-  });
+   
+  }));
   
   // New Route
   app.get("/chats/new", (req, res) =>{
@@ -48,8 +43,7 @@ app.get("/chats", async (req, res, next) => {
 
   // Create Route
 
-  app.post("/chats", async (req, res, next) => {
-    try{
+  app.post("/chats", asyncWrap (async (req, res, next) => {
       let {from, to, msg} = req.body;
       let newChat  = new Chat ({
         from: from,
@@ -59,33 +53,32 @@ app.get("/chats", async (req, res, next) => {
       });
       await newChat.save();
       res.redirect("/chats");
-    }catch (err){
-      next(err)
-    }
-   });
+   }));
 
+
+   function asyncWrap(fn){
+    return function (req, res, next){
+      fn(req, res, next).catch((err) => next(err))
+    }
+   }
+     
   // NEW Show Route
-  app.get("/chats/:id", async (req, res, next)=>{
+  app.get("/chats/:id", asyncWrap(async (req, res, next)=>{
     let { id } = req.params;
     let chat = await Chat.findById(id);
     // if(!chat) {
     //   next(new ExpresError(404, "Chat Not found"));
     // }
     res.render("edit", {chat});
-  })
+  }))
 
 
 // Edit Route
-app.get("/chats/:id/edit", async (req, res) => {
+app.get("/chats/:id/edit", asyncWrap(async (req, res) => {
   let { id } = req.params;
-  try {
-      let chat = await Chat.findById(id);
+  let chat = await Chat.findById(id);
       res.render("edit", { chat });
-  } catch (err) {
-      console.log(err);
-      res.status(500).send("Internal Server Error");
-  }
-});
+}));
 
 
 // Update Route
