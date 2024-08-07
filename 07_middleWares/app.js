@@ -1,8 +1,37 @@
 const express = require("express");
 const app = express();
+const ExpressError = require("./ExpressError")
 
 
+const checkToken =  (req, res , next )=>{
+    let {token} = req. query;
+    if(token === "giveaccess"){
+        next();
+    }
+    throw new ExpressError(401, "Access Denied");
+};
+app.get("/api", checkToken,(req, res)=>{
+    res.send("data");
+});
 
+
+app.get("/", (req, res)=>{
+    res.send("HI I am root")
+});
+
+app.get("/random", (req, res) =>{
+    res.send("This is   random page. ")
+})
+
+app.get("/err", (req, res)=>{
+    abcd = abcd;
+})
+
+
+app.use((err, req, res , next )=>{
+    let { status=500, message = "Some errro Accured"} = err
+    res.status(status).send(message)
+})
 // app.use((req, res, next) => {
 //     console.log("I am only for random");
 //    next();
@@ -20,19 +49,19 @@ const app = express();
 //    next();
 // });
 
-const checkToken =  (req, res , next )=>{
-    let {token} = req. query;
-    if(token === "giveaccess"){
-        next();
-    }
-    throw new Error("Accesss Denied");
-};
-// app.get("/wrong", (req, res)=>{
-//     abcd = abcd;
-// })
-app.get("/api", checkToken,(req, res)=>{
-    res.send("data");
-});
+
+
+
+
+
+
+
+// 404
+app.use((req, res) => {
+    res.send("page Not found!")
+})
+
+
 
 
 // LOgger - morgan
@@ -47,19 +76,15 @@ app.use("/random", (req, res, next) =>{
     next();
 })
 
-// 404
-// app.use((req, res) => {
-//     res.send("page Not found!")
-// })
 
+
+// Error Handling
 
 app.get("/", (req, res) =>{
     res.status(404).send("Hi I'm Root ")
 })
 
-app.get("/random", (req, res) =>{
-    res.send("This is   random page. ")
-})
+
 
 app.listen(8080, ()=>{
     console.log("Server listening to port 8080")
