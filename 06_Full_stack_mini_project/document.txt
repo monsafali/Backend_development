@@ -33,5 +33,17 @@ same as i can add footer & also as much as i can.
 
 
 
+part c
+Form Validations:=
+Whne we enter data in the form, the browser and/or the web server will check
+to see that the data is in the correct formate and within the constraints set
+by the application
+
+
+
+
+
+
+
 
 
