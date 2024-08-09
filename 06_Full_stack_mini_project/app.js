@@ -8,6 +8,7 @@ const Mongo_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate')  // require ejs mate
 const wrapAsync = require("./utils/wrapAsync.js")
+const ExpressError = require("./utils/ExpressError.js")
 
 
 main()
@@ -33,10 +34,11 @@ app.get("/", (req, res)=>{
 })
 
 // index Route
-app.get("/listings", async (req, res)=>{
+app.get("/listings", wrapAsync (async (req, res)=>{
     const allListening = await Listing.find({});
     res.render("listings/index.ejs", {allListening})
 })
+)
 
 // New Route
 app.get("/listings/new", (Req, res) =>{
@@ -45,16 +47,19 @@ app.get("/listings/new", (Req, res) =>{
 
 
 // Show Route
-app.get("/listings/:id", async (req, res) =>{
+app.get("/listings/:id", wrapAsync(async (req, res) =>{
     let {id} = req.params;
     const listing = await Listing.findById(id)
     res.render("listings/show.ejs", {listing})
 })
+)
 
 
 // Create Route
 app.post("/listings",wrapAsync( async(req, res,next) =>{
-    
+    if(!req.body.listing){
+        throw new  ExpressError(400, "Send valid data for listing");
+    }
         let listing = req.body.listing;
         const newListing = new Listing(listing) 
         await newListing.save();
@@ -64,28 +69,34 @@ app.post("/listings",wrapAsync( async(req, res,next) =>{
 )
 
 // Edit Route
-app.get("/listings/:id/edit", async (req, res) =>{
+app.get("/listings/:id/edit",wrapAsync( async (req, res) =>{
     let {id} = req.params;
     const listing = await Listing.findById(id)
     res.render("listings/edit.ejs", {listing})
 })
+)
 
 
 // update Route
-app.put("/listings/:id", async(req, res) =>{
+app.put("/listings/:id", wrapAsync (async(req, res) =>{
+    if(!req.body.listing){
+        throw new  ExpressError(400, "Send valid data for listing");
+    }
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing})
     // res.redirect("/listings")
     res.redirect(`/listings/${id}`)
 })
+)
 
 // Delete Route
-app.delete("/listings/:id", async (req, res)=>{
+app.delete("/listings/:id", wrapAsync(async (req, res)=>{
     let {id} = req.params;
     const DeleteListing = await Listing.findByIdAndDelete(id)
     console.log(DeleteListing)
     res.redirect("/listings")
 })
+)
 
 
 
@@ -102,9 +113,14 @@ app.delete("/listings/:id", async (req, res)=>{
 //     res.send("successfully testing")
 // })
 
+app.all("*", (req, res, next) =>{
+    next(new ExpressError(404, "Page Not found"))
+})
 
 app.use((err, req, res, next) =>{
-    res.send("Somethign went wrong")
+    let {statusCode=500, message="Something Went Wrong"} = err;
+    res.status(statusCode).render("error.ejs", {message})
+   
 })
 app.listen(port,()=>{
     console.log("Server is listening to port", port)
