@@ -14,8 +14,6 @@ const { listingSchema,reviewSchema } = require("./schema.js")
 
 
 
-
-
 main()
 .then(()=>{
     console.log("connected to DB")
@@ -115,21 +113,27 @@ app.delete("/listings/:id", wrapAsync(async (req, res)=>{
 })
 )
 
-// Reviews
-// Post Route
+// 
+// Post Reviews Route
 app.post("/listings/:id/reviews", validatereview, wrapAsync(async (req, res)=>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
-
-
     listing.reviews.push(newReview)
     await newReview.save();
     await listing.save();
 
     res.redirect(`/listings/${listing._id}`)
     // res.redirect(`/listings/${listing._id}`)
-
 }))
+
+// Delete Review Route
+app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+}));
+
 
 
 // app.get("/testListening", async(req, res)=>{
