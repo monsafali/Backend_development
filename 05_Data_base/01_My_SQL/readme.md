@@ -27,7 +27,7 @@ create table table_name( id int, name varchar(15), age int);
 insert into table_name values (1, 'monsaf', 25), (2,'kaleem', 35), (3, 'mustafa', 26);
 show tables;
 
-Select \* from table_name;
+Select * from table_name;
 
 <!-- data type -->
 
@@ -61,9 +61,9 @@ CONSTRAINT age_check CHECK (age >= 18)
 );
 
 Primary Key: Makes a column unique & not nul but used only for one
-It is a column (or set of columns) in a table that uniquely identifies each row ( a unique id) There is only 1 PK & it should be NOT nu..
+It is a column (or set of columns) in a table that uniquely identifies each row ( a unique id) There is only 1 PK & it should be NOT nul..
 
-Createw Table temp (
+Create Table temp (
 id int not null,
 Primary key (id)
 );
@@ -174,6 +174,10 @@ alter table users change column followers subs int default 0;
 Truncate (to delete table's data)
 
 TRUNCATE TABL E table_name;
+
+Joins:
+
+
 
 
 

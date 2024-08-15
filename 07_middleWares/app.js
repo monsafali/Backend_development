@@ -27,6 +27,10 @@ app.get("/err", (req, res)=>{
     abcd = abcd;
 })
 
+app.get("/admin", (req, res) =>{
+    throw new ExpressError (403, "Access is forbidden")
+})
+
 
 app.use((err, req, res , next )=>{
     let { status=500, message = "Some errro Accured"} = err

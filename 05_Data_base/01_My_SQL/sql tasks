@@ -2,12 +2,21 @@ Create a table named employees with columns: emp_id (integer, primary key), emp_
 
 Select all employees whose salary is greater than $50000.
 
-
 Find the average salary of employees in each department.
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department;
+
 
 Retrieve the highest salary among all employees.
+SELECT MAX(salary) AS highest_salary
+FROM employees;
 
 Count the number of employees in each department.
+SELECT department, COUNT(*) AS number_of_employees
+FROM employees
+GROUP BY department;
+
 
 Add a new column bonus to the employees table. Assign a bonus amount based on the following conditions:
 
