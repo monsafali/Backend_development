@@ -127,3 +127,11 @@ body {
     padding-left: 0;
     padding-right: 0;
 }
+
+
+/* map */
+#map {
+    height: 380px;
+    width: 100%;
+    border: 1px solid black;
+ }
