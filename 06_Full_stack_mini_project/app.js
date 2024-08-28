@@ -56,9 +56,10 @@ const sessionOption = {
         httpOnly: true,
     }
 }
-app.get("/", (req, res)=>{
-    res.send("Hi I am root welcome to a big game  ")
-})
+
+// app.get("/", (req, res)=>{
+//     res.send("Hi I am root welcome to a big game  ")
+// })
 
 app.use(session(sessionOption));
 app.use(flash())
