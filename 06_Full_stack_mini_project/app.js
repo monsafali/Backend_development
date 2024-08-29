@@ -2,15 +2,13 @@ if(process.env.NODE_ENV != "production"){
     require('dotenv').config()
 }
 
-
-
-
 const express = require("express")
 const app = express()
 const mongose = require("mongoose")
 const port = 8080;
 const path = require("path");
-const Mongo_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const Mongo_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate')  // require ejs mate
 const ExpressError = require("./utils/ExpressError.js")
@@ -26,8 +24,6 @@ const reviewRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js")
 
 
-
-
 main()
 .then(()=>{
     console.log("connected to DB")
@@ -37,7 +33,7 @@ main()
 })
 
 async function  main (){
-    await mongose.connect(Mongo_URL)
+    await mongose.connect(dbUrl)
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -57,10 +53,6 @@ const sessionOption = {
     }
 }
 
-// app.get("/", (req, res)=>{
-//     res.send("Hi I am root welcome to a big game  ")
-// })
-
 app.use(session(sessionOption));
 app.use(flash())
 
@@ -78,15 +70,6 @@ app.use((req, res, next)=>{
     res.locals.currUser = req.user;
     next();
 })
-
-// app.get("/demouser",async (req, res) =>{
-//     let fakeUser = new User({
-//         email: "monsafbiggame@gmail.com",
-//         username: "kamalgroup"
-//     })
-//     let registerUser = await User.register(fakeUser, "heloworld");
-//     res.send(registerUser)
-// })
 
 app.use("/listings", listingRouter)
 app.use("/listings/:id/reviews", reviewRouter)
