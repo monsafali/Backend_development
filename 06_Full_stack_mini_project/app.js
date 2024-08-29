@@ -7,12 +7,12 @@ const app = express()
 const mongose = require("mongoose")
 const port = 8080;
 const path = require("path");
-// const Mongo_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const dbUrl = process.env.ATLASDB_URL
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate')  // require ejs mate
 const ExpressError = require("./utils/ExpressError.js")
 const session = require("express-session")
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require("passport")
 const LocatStartegy = require("passport-local")
@@ -21,7 +21,8 @@ const User = require("./models/user.js")
 // Required route
 const listingRouter = require("./routes/listing.js")
 const reviewRouter = require("./routes/review.js")
-const userRouter = require("./routes/user.js")
+const userRouter = require("./routes/user.js");
+const { error } = require('console');
 
 
 main()
@@ -42,8 +43,23 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
+
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
+
+store.on("error", ()=>{
+    console.log("Error is mnog session STore", err)
+})
+
 const sessionOption = {
-    secret: "mysupersecretstring",
+    store,
+    secret: process.env.SECRET,
     resave: false, 
     saveUninitialized: true,
     cookie: {
@@ -52,6 +68,8 @@ const sessionOption = {
         httpOnly: true,
     }
 }
+
+
 
 app.use(session(sessionOption));
 app.use(flash())
